@@ -2,6 +2,7 @@ import requests
 import subprocess
 import validators
 
+
 #compressorPDF
 def validar_url():
     #valida a url digitada
