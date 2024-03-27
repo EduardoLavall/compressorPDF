@@ -14,6 +14,15 @@ def validar_url():
         print("URL inválida.")
     return url
 
+def validar_url_request(url):
+    #valida a url digitada
+    while True:
+        if validators.url(url):
+            return url
+        else:
+            return False
+    
+
 def baixar_arquivo(url, arquivoBruto):
     #envia a url como parâmetro para a API e baixa o arquivo PDF bruto
     api = "https://htmltopdf.hcc.app.br/?url="
@@ -25,6 +34,7 @@ def baixar_arquivo(url, arquivoBruto):
         print("Arquivo baixado com sucesso!")
     else:
         print("Falha ao baixar o arquivo:", response.status_code)
+        return False
 
 def convert_to_pdf(arquivoBruto, output_file):
     args = [
@@ -83,13 +93,19 @@ def main():
     url = validar_url()
     arquivoBruto = input('digite o nome do arquivo desejado (exemplo "documento"): ')
     baixar_arquivo(url, arquivoBruto)
-    #compress_pdf(arquivoBruto+'.pdf', 'output_compressed.pdf', quality='screen')
-    #convert_to_pdf(arquivoBruto+".pdf", "comprimido.pdf")
-    #comprimir_arquivo_pdf(arquivoBruto)
     comprimir_arquivo_pdf2(arquivoBruto)
-    #print ('Fim')
     print ('Fim')
     exit()
+    
+def compressorpdf(url, nomeArquivo):
+    #recebe a url e o nome do arquivo
+    if not validar_url_request(url):
+        print("url inválida")
+        return False
+    else:
+        baixar_arquivo(url, nomeArquivo)
+        comprimir_arquivo_pdf2(nomeArquivo)
+        return nomeArquivo
     
 if __name__ == "__main__":
     main()
