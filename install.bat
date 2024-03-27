@@ -1,7 +1,7 @@
 @echo off
 
 :: Cria o ambiente virtual
-virtualenv -p python venv
+virtualenv -p python .venv
 
 :: Ativa o ambiente virtual
 call venv\Scripts\activate
