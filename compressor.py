@@ -50,13 +50,16 @@ def comprimir_arquivo_pdf(arquivoBruto):
         
 def comprimir_arquivo_pdf2(arquivoBruto):
     #comprime o arquivo utilizando ghostscript
-    if platform.system() == 'Windows':
-        diretorioGS = r'.\gs\gs10.03.0\bin\gswin64\gswin64'
-    else:
-        diretorioGS = '/usr/bin/gs'
-        
     arquivoComprimido = arquivoBruto+"-comprimido.pdf"
-    command = '{} -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -sNAME=setting -sOutputFile={} {}'.format(diretorioGS, arquivoComprimido, arquivoBruto+'.pdf')
+    if platform.system() == 'Windows':
+        print('identificou windows')
+        diretorioGS = r'.\.venv\gs\gs10.03.0\bin\gswin64'
+        command = '{} -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -sNAME=setting -sOutputFile={} {}'.format(diretorioGS, arquivoComprimido, arquivoBruto+'.pdf')
+    else:
+        print('identificou outro sistema operacional')
+        diretorioGS = '/usr/bin/gs'
+        command = [diretorioGS, '-dNOPAUSE', '-dBATCH', '-sDEVICE=pdfwrite', '-dCompatibilityLevel=1.4', '-sNAME=setting', '-sOutputFile={}'.format(arquivoComprimido), '{}'.format(arquivoBruto+'.pdf')]
+        
     print (command)
     print("Comprimindo o arquivo PDF")
     try:

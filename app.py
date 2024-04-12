@@ -20,8 +20,8 @@ def compressor_pdf():
         if url_html and nome_arquivo:
             try:
                 compressor.compressorpdf(url_html, nome_arquivo)
-            except:
-                return "erro ao comprimir o arquivo"
+            except Exception as e:
+                return f"Erro ao comprimir o arquivo: {str(e)}"
             else:
                 nome_arquivo = nome_arquivo+"-comprimido.pdf"
                 print ("nome do arquivo: "+nome_arquivo)
