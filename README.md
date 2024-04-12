@@ -37,6 +37,8 @@ http://endereço:porta/compressor_pdf
  onde "url_html" deve ser o endereço da página html que será convertida para pdf
  e "nome_arquivo" refere-se ao nome do arquivo resultante
 
+4. A solicitação vai retornar uma URL de download do arquivo resultante
+
 
 
 
