@@ -1,8 +1,7 @@
 import requests
 import subprocess
 import validators
-#import ghostscript
-
+import platform
 
 #compressorPDF
 def validar_url():
@@ -21,7 +20,6 @@ def validar_url_request(url):
             return url
         else:
             return False
-    
 
 def baixar_arquivo(url, arquivoBruto):
     #envia a url como parâmetro para a API e baixa o arquivo PDF bruto
@@ -35,31 +33,6 @@ def baixar_arquivo(url, arquivoBruto):
     else:
         print("Falha ao baixar o arquivo:", response.status_code)
         return False
-
-#def convert_to_pdf(arquivoBruto, output_file):
-#    args = [
-#        "-dBATCH",
-#        "-dNOPAUSE",
-#        "-sDEVICE=pdfwrite",
-#        "-dCompatibilityLevel=1.4",
-#        "-sNAME=setting"
-#        f"-sOutputFile={output_file}",
-#        arquivoBruto
-#    ]
-#    ghostscript.Ghostscript(*args)
-
-def compress_pdf(input_file, output_file, quality='screen'):
-    args = [
-        "-sDEVICE=pdfwrite",
-        "-dCompatibilityLevel=1.4",
-        "-dPDFSETTINGS=/" + quality,
-        "-dNOPAUSE",
-        "-dQUIET",
-        "-dBATCH",
-        "-sOutputFile={output_file}",
-        input_file
-    ]
-    ghostscript.Ghostscript(*args)
 
 def comprimir_arquivo_pdf(arquivoBruto):
     #comprime o arquivo utilizando ghostscript
@@ -77,8 +50,11 @@ def comprimir_arquivo_pdf(arquivoBruto):
         
 def comprimir_arquivo_pdf2(arquivoBruto):
     #comprime o arquivo utilizando ghostscript
-    
-    diretorioGS = r'.\gs\gs10.03.0\bin\gswin64'
+    if platform.system() == 'Windows':
+        diretorioGS = r'.\gs\gs10.03.0\bin\gswin64\gswin64'
+    else:
+        diretorioGS = '/usr/bin/gs'
+        
     arquivoComprimido = arquivoBruto+"-comprimido.pdf"
     command = '{} -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -sNAME=setting -sOutputFile={} {}'.format(diretorioGS, arquivoComprimido, arquivoBruto+'.pdf')
     print (command)
@@ -89,7 +65,6 @@ def comprimir_arquivo_pdf2(arquivoBruto):
     except subprocess.CalledProcessError as e:
         print("Ocorreu um erro ao comprimir o arquivo PDF:", e)
 
-#url = r'https://hcc-prd.s3.amazonaws.com/IDF/158582/Orçamento/Proposta/Proposta_IDF_158582_V1.1.html'
 def main():
     url = validar_url()
     arquivoBruto = input('digite o nome do arquivo desejado (exemplo "documento"): ')
