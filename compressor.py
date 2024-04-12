@@ -78,7 +78,7 @@ def comprimir_arquivo_pdf(arquivoBruto):
 def comprimir_arquivo_pdf2(arquivoBruto):
     #comprime o arquivo utilizando ghostscript
     
-    diretorioGS = r'.\.venv\gs\gs10.03.0\bin\gswin64'
+    diretorioGS = r'.\gs\gs10.03.0\bin\gswin64'
     arquivoComprimido = arquivoBruto+"-comprimido.pdf"
     command = '{} -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -sNAME=setting -sOutputFile={} {}'.format(diretorioGS, arquivoComprimido, arquivoBruto+'.pdf')
     print (command)
