@@ -4,6 +4,10 @@ import os
 
 app = Flask(__name__)
 
+@app.route('/teste', methods=['GET'])
+def teste():
+        return 'Teste'
+    
 @app.route('/compressor_pdf', methods=['POST'])
 def compressor_pdf():
     # Verifica se a solicitação contém JSON

@@ -1,7 +1,7 @@
 import requests
 import subprocess
 import validators
-import ghostscript
+#import ghostscript
 
 
 #compressorPDF
@@ -36,17 +36,18 @@ def baixar_arquivo(url, arquivoBruto):
         print("Falha ao baixar o arquivo:", response.status_code)
         return False
 
-def convert_to_pdf(arquivoBruto, output_file):
-    args = [
-        "-dBATCH",
-        "-dNOPAUSE",
-        "-sDEVICE=pdfwrite",
-        "-dCompatibilityLevel=1.4",
-        "-sNAME=setting"
-        f"-sOutputFile={output_file}",
-        arquivoBruto
-    ]
-    ghostscript.Ghostscript(*args)
+#def convert_to_pdf(arquivoBruto, output_file):
+#    args = [
+#        "-dBATCH",
+#        "-dNOPAUSE",
+#        "-sDEVICE=pdfwrite",
+#        "-dCompatibilityLevel=1.4",
+#        "-sNAME=setting"
+#        f"-sOutputFile={output_file}",
+#        arquivoBruto
+#    ]
+#    ghostscript.Ghostscript(*args)
+
 def compress_pdf(input_file, output_file, quality='screen'):
     args = [
         "-sDEVICE=pdfwrite",
