@@ -1,4 +1,4 @@
-# compressorPDF
+# compressorPDF📩
  Converte html para pdf e comprime o arquivo
  - recebe uma url e valida ela
  - define o nome do arquivo resultante
