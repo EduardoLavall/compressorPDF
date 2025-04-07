@@ -1,5 +1,5 @@
 # compressorPDF📩
- ###Converte html para pdf e comprime o arquivo em até 10% do seu tamanho original, sem perder a qualidade
+ ### Converte html para pdf e comprime o arquivo em até 10% do seu tamanho original, sem perder a qualidade
  - recebe uma url e valida ela
  - define o nome do arquivo resultante
  - faz o download do arquivo bruto
